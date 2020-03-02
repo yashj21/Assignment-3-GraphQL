@@ -10,15 +10,15 @@ type Product {
   id: Int!
   productcat: Category!
   productname: String!
-  productprice: String!
+  productprice: Float!
   producturl: String!
 }
 
 input ProductInputs {
-  productcat: Category
-  productname: String
-  productprice: String
-  producturl: String
+  productcat: Category!
+  productname: String!
+  productprice: Float!
+  producturl: String!
 }
 
 type Query {

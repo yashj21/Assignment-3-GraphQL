@@ -12,7 +12,7 @@ class ProductAdd extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         const form = document.forms.productAdd;
-        form.price.value = form.price.value.substring(1);
+        form.price.value = parseFloat(form.price.value.substring(1));
         const productnew = {
       productname: form.productname.value, productcat: form.productcat.value,
       productprice: form.price.value, producturl:form.url.value,
@@ -33,8 +33,7 @@ class ProductAdd extends React.Component{
 		const target = e.target
 		const name = target.name
 		const value = target.value
-
-		this.setState((prevState) => {
+ 		this.setState((prevState) => {
 			prevState.product.price = value
 			return { product: prevState.product }
 		})
@@ -153,14 +152,14 @@ class ProductList extends React.Component{
             product.id = this.state.productArray.length +1;   
             const existingLists = this.state.productArray.slice();
             existingLists.push(product);
-            this.setState({
-                productArray:existingLists
-            });
+            // this.setState({
+            //     productArray:existingLists
+            // });
             const query = `mutation {
                 productAdd(product: {
                 productcat: ${product.productcat}
                 productname: "${product.productname}"
-                productprice: "${product.productprice}"
+                productprice: ${product.productprice}
                 producturl: "${product.producturl}"
               }) {
                 id
